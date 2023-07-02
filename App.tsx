@@ -1,4 +1,4 @@
-import {View, Text, Dimensions, Image} from 'react-native';
+import {View, Text, Dimensions, Image, StatusBar} from 'react-native';
 import React from 'react';
 import Table from './src/TableUI/Table';
 import Table2 from './src/TableUI/Table2';
@@ -7,13 +7,15 @@ import Index_Table from './src/TableUI/Index_Table';
 import Index_Draggable from './src/DraggableUI/Index_Draggable';
 import Chat from './src/ChatUI/Chat';
 import IMessage from './src/IMessage/IMessage';
+import EnglishStudy from './src/EnglishUI/EnglishStudy';
 const {width, height} = Dimensions.get('screen');
 const App = () => {
   return (
     <View style={{flex: 1}}>
-      {/* <Index_Draggable /> */}
+      <Index_Draggable />
       {/* <Chat /> */}
-      <IMessage />
+      {/* <IMessage /> */}
+      {/* <EnglishStudy /> */}
     </View>
   );
 };

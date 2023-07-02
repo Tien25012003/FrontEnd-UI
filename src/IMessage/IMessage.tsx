@@ -10,6 +10,7 @@ import Animated, {
   useSharedValue,
   runOnJS,
   withSpring,
+  withTiming,
 } from 'react-native-reanimated';
 const IMAGES = [
   'https://images.unsplash.com/photo-1541410965313-d53b3c16ef17?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80',
@@ -45,15 +46,17 @@ const IMessage = () => {
   const panGesture = Gesture.Pan()
     .onUpdate(e => {
       animatedValue.value = e.translationX + startX.value;
-      animatedScale.value = withSpring(0.7);
+      animatedScale.value = withTiming(0.7);
       //   if (animatedValue.value > width / 2 - 100) {
       //     animatedValue.value = width / 2 - 100;
       //   }
       //console.log(animatedValue.value);
     })
     .onStart(e => (startX.value = animatedValue.value))
-    .onEnd(e => ((animatedValue.value = 0), (animatedScale.value = 1)))
-    .onFinalize(e => {
+    .onFinalize(
+      e => ((animatedValue.value = 0), (animatedScale.value = withTiming(1))),
+    )
+    .onEnd(e => {
       //console.log('final');
       runOnJS(onChangeImage)();
     });
@@ -84,7 +87,7 @@ const IMessage = () => {
                     {translateY: 130},
                     {rotate: `${(IMAGES.length - 1 - index) * 3}deg`},
                     {translateY: -130},
-                    {scale: scaleArray[index]},
+                    //{scale: scaleArray[index]},
                     {translateX: (IMAGES.length - 1 - index) * 5},
                   ],
                 }}>
@@ -107,7 +110,7 @@ const IMessage = () => {
                         {translateY: 130},
                         {rotate: `${(imageArray.length - 1 - index) * 3}deg`},
                         {translateY: -130},
-                        {scale: scaleArray[index]},
+                        //{scale: scaleArray[index]},
                       ],
                     },
                     animatedStyle,
