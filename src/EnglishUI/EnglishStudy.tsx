@@ -20,24 +20,22 @@ import {
   GestureDetector,
   Gesture,
 } from 'react-native-gesture-handler';
+import Answer from './Answer';
 const {width, height} = Dimensions.get('screen');
+
 const EnglishStudy = () => {
-  const [sentence, setSentence] = useState('Hello! How are you today?');
-  const [words, setWords] = useState<String[]>([]);
-  let animatedValue = [];
-  useEffect(() => {
-    setWords(sentence.split(' '));
-  }, [sentence]);
+  const [sentence, setSentence] = useState(
+    'Hello! How are you this morning? I am happy to see you.',
+  );
+  const [words, setWords] = useState<String[]>(sentence.split(' '));
+  //let animatedValue = [];
 
-  const tap = Gesture.Tap().onStart(e => {
-    console.log('tap');
-    //console.log(e.absoluteX);
-  });
+  // useEffect(() => {
+  //   setWords(sentence.split(' '));
+  // }, [sentence]);
 
-  //const animatedValue = [...new Array(6)].map((w, _) => useSharedValue(0));
-  //let position = words.map((d, i) => useSharedValue(0));
   return (
-    <GestureHandlerRootView style={{flex: 1, backgroundColor: '#fff'}}>
+    <View style={{flex: 1, backgroundColor: '#fff'}}>
       <StatusBar backgroundColor={'transparent'} barStyle={'dark-content'} />
       <ScrollView style={{flex: 1}}>
         <View style={styles.row}>
@@ -128,63 +126,10 @@ const EnglishStudy = () => {
             </Svg>
           </View>
         </View>
-        <View style={{paddingHorizontal: 20}}>
-          {[...new Array(2)].map((e, i) => {
-            return (
-              <View
-                key={i}
-                style={{
-                  height: 55,
-                  borderBottomWidth: 2.5,
-                  borderColor: '#e2dfdb',
-                  justifyContent: 'center',
-                }}></View>
-            );
-          })}
-        </View>
 
-        <GestureDetector gesture={tap}>
-          <Animated.View
-            style={{
-              marginTop: 50,
-              paddingHorizontal: 20,
-              flexDirection: 'row',
-              flexWrap: 'wrap',
-            }}>
-            {words.map((word, i) => {
-              return (
-                <View
-                  key={i}
-                  style={{
-                    height: 55,
-                    borderRadius: 15,
-                    backgroundColor: '#e2dfdb',
-                    paddingHorizontal: 2,
-                    paddingTop: 2,
-                    //paddingBottom: 8,
-                    marginHorizontal: 5,
-                    marginVertical: 5,
-                  }}>
-                  <View
-                    style={{
-                      height: 48,
-                      borderRadius: 12,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      backgroundColor: '#fff',
-                      paddingHorizontal: 10,
-                    }}>
-                    <Text style={{color: '#000'}} adjustsFontSizeToFit>
-                      {word}
-                    </Text>
-                  </View>
-                </View>
-              );
-            })}
-          </Animated.View>
-        </GestureDetector>
+        <Answer words={words} />
       </ScrollView>
-    </GestureHandlerRootView>
+    </View>
   );
 };
 const styles = StyleSheet.create({
