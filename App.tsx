@@ -9,6 +9,7 @@ import Chat from './src/ChatUI/Chat';
 import IMessage from './src/IMessage/IMessage';
 import EnglishStudy from './src/EnglishUI/EnglishStudy';
 import ZustandTest from './src/ZustandTest/ZustandTest';
+import MMKVStorage from './src/MMKVTest/MMKVStorage';
 const {width, height} = Dimensions.get('screen');
 const App = () => {
   return (
@@ -16,8 +17,9 @@ const App = () => {
       {/* <Index_Draggable /> */}
       {/* <Chat /> */}
       {/* <IMessage /> */}
-      {/* <EnglishStudy /> */}
-      <ZustandTest />
+      <EnglishStudy />
+      {/* <ZustandTest /> */}
+      {/* <MMKVStorage /> */}
     </View>
   );
 };

@@ -16,6 +16,7 @@ const ZustandTest = () => {
   //console.log(nested);
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <Text style={{color: '#000', fontSize: 15}}>Test Zustand</Text>
       <Text>{count}</Text>
       <Button title="Increase" onPress={increment} />
       <Button title="Increase by number" onPress={() => incrementByNumber(2)} />

@@ -1,8 +1,23 @@
 import {create} from 'zustand';
 import {produce} from 'immer';
-import {persist, createJSONStorage} from 'zustand/middleware';
+import {persist, createJSONStorage, StateStorage} from 'zustand/middleware';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {immer} from 'zustand/middleware/immer';
+import {MMKVLoader} from 'react-native-mmkv-storage';
+const mmkv = new MMKVLoader().initialize();
+const mmkvStorage: StateStorage = {
+  getItem: async (key: string) => {
+    const value = mmkv.getString(key);
+    return value ?? null;
+  },
+  setItem: async (key: string, value: string) => {
+    mmkv.setString(key, value);
+  },
+  removeItem: async (key: string) => {
+    mmkv.removeItem(key);
+  },
+};
+
 type State = {
   count: number;
   arrayCount: number[];
@@ -48,7 +63,7 @@ export const useBearStore = create<State & Actions>()(
       }),
       {
         name: 'bear-store',
-        storage: createJSONStorage(() => AsyncStorage),
+        storage: createJSONStorage(() => mmkvStorage),
       },
     ),
   ),
