@@ -8,6 +8,8 @@ import {
   Animated,
   Pressable,
   FlatList,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
 } from 'react-native';
 import React, {useRef, useState} from 'react';
 import {Svg, Defs, LinearGradient, Stop, Rect} from 'react-native-svg';
@@ -123,6 +125,9 @@ const OnBoarding = () => {
               ],
               {
                 useNativeDriver: false,
+                listener: (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+                  setCurrentPage(e.nativeEvent.contentOffset.x / width);
+                },
               },
             )}
             // onScrollEndDrag={e => {
@@ -170,7 +175,7 @@ const OnBoarding = () => {
             })}
           </View>
         </ScrollView>
-        {/* {currentPage < CONTENTS.length - 1 ? (
+        {currentPage < CONTENTS.length - 1 ? (
           <View
             style={{
               position: 'absolute',
@@ -184,8 +189,9 @@ const OnBoarding = () => {
                 alignItems: 'flex-end',
               }}
               onPress={() => {
+                let index = currentPage;
                 scrollRef?.current?.scrollToOffset({
-                  offset: currentPage * width,
+                  offset: (index + 1) * width,
                 });
                 //setCurrentPage(currentPage + 1);
               }}>
@@ -218,7 +224,7 @@ const OnBoarding = () => {
               Get Started
             </Text>
           </View>
-        )} */}
+        )}
       </View>
     </View>
   );
