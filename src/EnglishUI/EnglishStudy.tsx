@@ -121,7 +121,7 @@ const EnglishStudy = () => {
                   letterSpacing: 0.5,
                 }}
                 adjustsFontSizeToFit>
-                Hello! How are you today?
+                Hello! How are you this morning? I am happy to see you.
               </Text>
             </Svg>
           </View>

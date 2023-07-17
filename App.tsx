@@ -10,6 +10,7 @@ import IMessage from './src/IMessage/IMessage';
 import EnglishStudy from './src/EnglishUI/EnglishStudy';
 import ZustandTest from './src/ZustandTest/ZustandTest';
 import MMKVStorage from './src/MMKVTest/MMKVStorage';
+import OnBoarding from './src/OnBoarding/OnBoarding';
 const {width, height} = Dimensions.get('screen');
 const App = () => {
   return (
@@ -17,9 +18,10 @@ const App = () => {
       {/* <Index_Draggable /> */}
       {/* <Chat /> */}
       {/* <IMessage /> */}
-      <EnglishStudy />
+      {/* <EnglishStudy /> */}
       {/* <ZustandTest /> */}
       {/* <MMKVStorage /> */}
+      <OnBoarding />
     </View>
   );
 };
