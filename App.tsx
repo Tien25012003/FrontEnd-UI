@@ -11,6 +11,7 @@ import EnglishStudy from './src/EnglishUI/EnglishStudy';
 import ZustandTest from './src/ZustandTest/ZustandTest';
 import MMKVStorage from './src/MMKVTest/MMKVStorage';
 import OnBoarding from './src/OnBoarding/OnBoarding';
+import ConcentricTransition from './src/ConcentricTransition/ConcentricTransition';
 const {width, height} = Dimensions.get('screen');
 const App = () => {
   return (
@@ -21,7 +22,8 @@ const App = () => {
       {/* <EnglishStudy /> */}
       {/* <ZustandTest /> */}
       {/* <MMKVStorage /> */}
-      <OnBoarding />
+      <ConcentricTransition />
+      {/* <OnBoarding /> */}
     </View>
   );
 };

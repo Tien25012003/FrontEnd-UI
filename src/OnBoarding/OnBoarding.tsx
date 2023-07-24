@@ -64,7 +64,7 @@ const OnBoarding = () => {
       />
     );
   };
-  console.log(currentPage);
+
   return (
     <View style={{flex: 1}}>
       <StatusBar
