@@ -12,18 +12,25 @@ import ZustandTest from './src/ZustandTest/ZustandTest';
 import MMKVStorage from './src/MMKVTest/MMKVStorage';
 import OnBoarding from './src/OnBoarding/OnBoarding';
 import ConcentricTransition from './src/ConcentricTransition/ConcentricTransition';
+import LocationHome from './src/LocationUI/Screens/LocationHome';
 const {width, height} = Dimensions.get('screen');
 const App = () => {
   return (
     <View style={{flex: 1}}>
+      <StatusBar
+        backgroundColor={'transparent'}
+        barStyle={'light-content'}
+        translucent
+      />
       {/* <Index_Draggable /> */}
       {/* <Chat /> */}
       {/* <IMessage /> */}
       {/* <EnglishStudy /> */}
       {/* <ZustandTest /> */}
       {/* <MMKVStorage /> */}
-      <ConcentricTransition />
+      {/* <ConcentricTransition /> */}
       {/* <OnBoarding /> */}
+      <LocationHome />
     </View>
   );
 };

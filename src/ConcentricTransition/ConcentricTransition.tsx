@@ -38,7 +38,7 @@ const ConcentricTransition = () => {
     <View style={{flex: 1}}>
       <StatusBar
         backgroundColor={'transparent'}
-        barStyle={'dark-content'}
+        barStyle={'light-content'}
         translucent
       />
       {DATA.map((data, index) => {
