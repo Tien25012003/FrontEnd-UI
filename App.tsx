@@ -13,6 +13,7 @@ import MMKVStorage from './src/MMKVTest/MMKVStorage';
 import OnBoarding from './src/OnBoarding/OnBoarding';
 import ConcentricTransition from './src/ConcentricTransition/ConcentricTransition';
 import LocationHome from './src/LocationUI/Screens/LocationHome';
+import StackNavigation from './src/LocationUI/LocationNavigation/StackNavigation';
 const {width, height} = Dimensions.get('screen');
 const App = () => {
   return (
@@ -30,7 +31,7 @@ const App = () => {
       {/* <MMKVStorage /> */}
       {/* <ConcentricTransition /> */}
       {/* <OnBoarding /> */}
-      <LocationHome />
+      <StackNavigation />
     </View>
   );
 };

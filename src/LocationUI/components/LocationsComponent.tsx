@@ -23,14 +23,23 @@ import Animated, {
   useAnimatedStyle,
   withTiming,
   interpolate,
+  SharedTransition,
 } from 'react-native-reanimated';
+
 const {width, height} = Dimensions.get('screen');
 const ITEM_SIZE = width * 0.8;
 const PADDING = (width - ITEM_SIZE) / 2;
 const PADDINGTOP = (height * 0.1) / 2;
-const LocationsComponent = ({setCurrentIndex}: {setCurrentIndex: Function}) => {
+const LocationsComponent = ({
+  setCurrentIndex,
+  navigation,
+}: {
+  setCurrentIndex: Function;
+  navigation: any;
+}) => {
   const position = useSharedValue(0);
   const animatedValue = LOCATIONS.map(() => useSharedValue(0));
+
   const animatedImageStyle = LOCATIONS.map((_, index) =>
     useAnimatedStyle(() => {
       return {
@@ -62,7 +71,17 @@ const LocationsComponent = ({setCurrentIndex}: {setCurrentIndex: Function}) => {
       };
     }),
   );
-
+  const panGesture = Gesture.Pan().onEnd(e => {
+    let i = Number(position.value.toFixed(0));
+    if (e.translationY < 0) {
+      animatedValue[i].value = withTiming(1);
+    } else {
+      animatedValue[i].value = withTiming(0);
+    }
+  });
+  const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+  const AnimatedImageBackground =
+    Animated.createAnimatedComponent(ImageBackground);
   const renderLocation = ({
     item: location,
     index,
@@ -70,19 +89,9 @@ const LocationsComponent = ({setCurrentIndex}: {setCurrentIndex: Function}) => {
     item: LocationProps;
     index: number;
   }) => {
-    const panGesture = Gesture.Pan().onEnd(e => {
-      let i = Number(position.value.toFixed(0));
-      if (e.translationY < 0) {
-        animatedValue[i].value = withTiming(1);
-      } else {
-        animatedValue[i].value = withTiming(0);
-      }
-    });
-
     return (
       <View
         style={{
-          //borderWidth: 1,
           height: height * 0.6,
           width: ITEM_SIZE,
           justifyContent: 'center',
@@ -102,13 +111,17 @@ const LocationsComponent = ({setCurrentIndex}: {setCurrentIndex: Function}) => {
               animatedBackStyle[index],
             ]}>
             <View style={{paddingHorizontal: 8, paddingBottom: 10}}>
-              <Text
-                style={{fontSize: 15, color: '#000', fontWeight: '600'}}
-                adjustsFontSizeToFit
-                numberOfLines={1}>
-                {location.addressLine1}
-              </Text>
-              <View
+              <Animated.View
+                sharedTransitionTag={location.name + location.addressLine1}>
+                <Text
+                  style={{fontSize: 12, color: '#000', fontWeight: '600'}}
+                  adjustsFontSizeToFit
+                  numberOfLines={2}>
+                  {location.addressLine1}
+                </Text>
+              </Animated.View>
+              <Animated.View
+                sharedTransitionTag={location.name + location.addressLine2}
                 style={{
                   flexDirection: 'row',
                   alignItems: 'center',
@@ -118,11 +131,14 @@ const LocationsComponent = ({setCurrentIndex}: {setCurrentIndex: Function}) => {
                   {location.addressLine2}
                 </Text>
                 <StarRating stars={location.starRating} />
-              </View>
+              </Animated.View>
               <View style={{flexDirection: 'row'}}>
                 {location.reviews.map((review, index) => {
                   return (
-                    <View
+                    <Animated.View
+                      sharedTransitionTag={
+                        location.name + review.username + index
+                      }
                       style={{
                         width: 25,
                         height: 25,
@@ -137,68 +153,77 @@ const LocationsComponent = ({setCurrentIndex}: {setCurrentIndex: Function}) => {
                         source={review.urlImage}
                         style={{width: 20, height: 20}}
                       />
-                    </View>
+                    </Animated.View>
                   );
                 })}
               </View>
             </View>
           </Animated.View>
         </View>
-        <GestureDetector gesture={panGesture}>
-          <Animated.View
-            style={[
-              {marginHorizontal: 15, elevation: 20},
-              animatedImageStyle[index],
-            ]}>
-            <ImageBackground
+        <AnimatedPressable
+          onPress={() => {
+            //animatedValue[index].value = withTiming(1);
+            navigation.navigate('Detail', {location: location});
+          }}
+          style={[
+            {marginHorizontal: 15, elevation: 20},
+            animatedImageStyle[index],
+          ]}>
+          <View style={{height: height * 0.5}}>
+            <Animated.Image
+              sharedTransitionTag={location.urlImage.toString()}
               source={location.urlImage}
-              imageStyle={{borderRadius: 20}}
-              style={{height: height * 0.5}}>
+              style={{
+                height: height * 0.5,
+                width: ITEM_SIZE - 30,
+                borderRadius: 20,
+              }}
+              resizeMode="cover"
+            />
+            <View style={{position: 'absolute', alignSelf: 'center'}}>
+              <Text style={{color: '#fff', fontWeight: '700', marginTop: 10}}>
+                {location.name}
+              </Text>
+            </View>
+            <View
+              style={{position: 'absolute', bottom: 0, alignSelf: 'center'}}>
               <View
                 style={{
+                  flexDirection: 'row',
+                  width: ITEM_SIZE - 30,
+                  paddingHorizontal: 10,
                   justifyContent: 'space-between',
-                  height: height * 0.5,
-                  alignItems: 'center',
+                  marginBottom: 10,
+                  alignItems: 'flex-end',
                 }}>
-                <Text style={{color: '#fff', fontWeight: '700', marginTop: 10}}>
-                  {location.name}
-                </Text>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    width: '90%',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    marginBottom: 10,
-                  }}>
-                  <Text style={styles.text}>{location.latitude}</Text>
-                  <Entypo name="location-pin" color={'#fff'} size={25} />
-                  <Text style={styles.text}>{location.longitude}</Text>
-                </View>
+                <Text style={styles.text}>{location.latitude}</Text>
+                <Entypo name="location-pin" color={'#fff'} size={25} />
+                <Text style={styles.text}>{location.longitude}</Text>
               </View>
-            </ImageBackground>
-          </Animated.View>
-        </GestureDetector>
+            </View>
+          </View>
+        </AnimatedPressable>
       </View>
     );
   };
   return (
     <GestureHandlerRootView>
-      <FlatList
-        onScroll={e => {
-          position.value = e.nativeEvent.contentOffset.x / ITEM_SIZE;
-          setCurrentIndex(
-            (e.nativeEvent.contentOffset.x / ITEM_SIZE).toFixed(0),
-          );
-        }}
-        //onScrollEndDrag={() => setCurrentIndex(position.value.toFixed(0))}
-        showsHorizontalScrollIndicator={false}
-        horizontal
-        data={LOCATIONS}
-        renderItem={renderLocation}
-        pagingEnabled={true}
-        snapToInterval={ITEM_SIZE}
-      />
+      <GestureDetector gesture={panGesture}>
+        <FlatList
+          onScroll={e => {
+            position.value = e.nativeEvent.contentOffset.x / ITEM_SIZE;
+            setCurrentIndex(
+              (e.nativeEvent.contentOffset.x / ITEM_SIZE).toFixed(0),
+            );
+          }}
+          showsHorizontalScrollIndicator={false}
+          horizontal
+          data={LOCATIONS}
+          renderItem={renderLocation}
+          pagingEnabled={true}
+          snapToInterval={ITEM_SIZE}
+        />
+      </GestureDetector>
     </GestureHandlerRootView>
   );
 };

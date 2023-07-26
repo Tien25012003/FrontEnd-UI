@@ -3,7 +3,7 @@ import {REVIEWS} from '../data/Reviews';
 import {ReviewProps} from '../data/Reviews';
 export interface LocationProps {
   name: string;
-  urlImage: ImageSourcePropType;
+  urlImage: any;
   addressLine1: string;
   addressLine2: string;
   starRating: number;

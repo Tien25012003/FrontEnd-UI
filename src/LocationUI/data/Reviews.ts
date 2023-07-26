@@ -2,7 +2,7 @@ import {ImageSourcePropType} from 'react-native';
 export interface ReviewProps {
   date: string;
   username: string;
-  urlImage: ImageSourcePropType;
+  urlImage: any;
   description: string;
 }
 export const REVIEWS = [
