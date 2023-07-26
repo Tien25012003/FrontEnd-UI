@@ -14,13 +14,14 @@ import OnBoarding from './src/OnBoarding/OnBoarding';
 import ConcentricTransition from './src/ConcentricTransition/ConcentricTransition';
 import LocationHome from './src/LocationUI/Screens/LocationHome';
 import StackNavigation from './src/LocationUI/LocationNavigation/StackNavigation';
+import Home from './src/BlogApp/Home';
 const {width, height} = Dimensions.get('screen');
 const App = () => {
   return (
     <View style={{flex: 1}}>
       <StatusBar
         backgroundColor={'transparent'}
-        barStyle={'light-content'}
+        barStyle={'dark-content'}
         translucent
       />
       {/* <Index_Draggable /> */}
@@ -31,7 +32,8 @@ const App = () => {
       {/* <MMKVStorage /> */}
       {/* <ConcentricTransition /> */}
       {/* <OnBoarding /> */}
-      <StackNavigation />
+      {/* <StackNavigation /> */}
+      <Home />
     </View>
   );
 };
