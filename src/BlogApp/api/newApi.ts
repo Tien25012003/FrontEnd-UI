@@ -23,4 +23,4 @@ const getByCategory = async (category: number, qty?: number) => {
     return [];
   }
 };
-export {getAll, getByCategory};
+export default {getAll, getByCategory};

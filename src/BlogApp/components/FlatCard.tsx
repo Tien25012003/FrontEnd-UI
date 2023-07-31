@@ -2,6 +2,7 @@ import {View, Text, StyleSheet, Image} from 'react-native';
 import React from 'react';
 import Title from './Title';
 import SubTitle from './SubTitle';
+import ViewMore from './ViewMore';
 
 const FlatCard = ({
   height = 100,
@@ -18,18 +19,21 @@ const FlatCard = ({
   marginHorizontal?: number;
   marginVertical?: number;
   style?: any;
-  item?: Item;
+  item?: INews;
 }) => {
   const {title, thumbnail, desc} = item;
   const source = !!thumbnail
     ? {uri: thumbnail}
     : require('../../LocationUI/assets/mountain.jpg');
+  if (item.type === 'viewMore') {
+    return <ViewMore />;
+  }
   return (
     <View style={[styles.container, {marginHorizontal, marginVertical}]}>
       <Image
         defaultSource={require('../../LocationUI/assets/mountain.jpg')}
         source={source}
-        style={{height, flex: 3.5}}
+        style={{height: '100%', flex: 3.5}}
         resizeMode="cover"
       />
       <View style={styles.content}>

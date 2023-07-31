@@ -15,6 +15,7 @@ import ConcentricTransition from './src/ConcentricTransition/ConcentricTransitio
 import LocationHome from './src/LocationUI/Screens/LocationHome';
 import StackNavigation from './src/LocationUI/LocationNavigation/StackNavigation';
 import Home from './src/BlogApp/Home';
+import FabButton from './src/FabButton/FabButton';
 const {width, height} = Dimensions.get('screen');
 const App = () => {
   return (
@@ -33,7 +34,8 @@ const App = () => {
       {/* <ConcentricTransition /> */}
       {/* <OnBoarding /> */}
       {/* <StackNavigation /> */}
-      <Home />
+      {/* <Home /> */}
+      <FabButton />
     </View>
   );
 };
