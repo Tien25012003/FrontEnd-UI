@@ -16,6 +16,8 @@ import LocationHome from './src/LocationUI/Screens/LocationHome';
 import StackNavigation from './src/LocationUI/LocationNavigation/StackNavigation';
 import Home from './src/BlogApp/Home';
 import FabButton from './src/FabButton/FabButton';
+import GradientPicker from './src/GradientPicker/GradientPicker';
+import GradientPicker_Index from './src/GradientPicker/GradientPicker_Index';
 const {width, height} = Dimensions.get('screen');
 const App = () => {
   return (
@@ -35,7 +37,9 @@ const App = () => {
       {/* <OnBoarding /> */}
       {/* <StackNavigation /> */}
       {/* <Home /> */}
-      <FabButton />
+      {/* <FabButton /> */}
+      {/* <GradientPicker /> */}
+      <GradientPicker_Index />
     </View>
   );
 };

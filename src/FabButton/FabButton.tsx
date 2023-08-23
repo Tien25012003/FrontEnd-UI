@@ -13,12 +13,8 @@ const FabButton = () => {
   const animatedViewBox = useAnimatedProps(() => {
     return {
       transform: [
-        {
-          translateY: animatedValueY.value,
-        },
-        {
-          translateX: animatedValueX.value,
-        },
+        {translateY: animatedValueY.value},
+        {translateX: animatedValueX.value},
       ],
     };
   });
