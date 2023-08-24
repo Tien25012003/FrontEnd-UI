@@ -24,6 +24,9 @@
     "react-native-screens": "^3.22.1",
     "react-native-svg": "^13.9.0",
     "react-native-vector-icons": "^9.2.0",
+    "react-redux": "^8.1.2",
+    "redux": "^4.2.1",
+    "redux-thunk": "^2.4.2",
     "zustand": "^4.3.8"
   },
   "devDependencies": {

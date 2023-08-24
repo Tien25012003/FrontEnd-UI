@@ -18,29 +18,35 @@ import Home from './src/BlogApp/Home';
 import FabButton from './src/FabButton/FabButton';
 import GradientPicker from './src/GradientPicker/GradientPicker';
 import GradientPicker_Index from './src/GradientPicker/GradientPicker_Index';
+import CounterScreen from './src/ReduxCore/Counter/CounterScreen';
+import {Provider} from 'react-redux';
+import {store} from './src/ReduxCore/Counter/Store/store';
 const {width, height} = Dimensions.get('screen');
 const App = () => {
   return (
-    <View style={{flex: 1}}>
-      <StatusBar
-        backgroundColor={'transparent'}
-        barStyle={'dark-content'}
-        translucent
-      />
-      {/* <Index_Draggable /> */}
-      {/* <Chat /> */}
-      {/* <IMessage /> */}
-      {/* <EnglishStudy /> */}
-      {/* <ZustandTest /> */}
-      {/* <MMKVStorage /> */}
-      {/* <ConcentricTransition /> */}
-      {/* <OnBoarding /> */}
-      {/* <StackNavigation /> */}
-      {/* <Home /> */}
-      {/* <FabButton /> */}
-      {/* <GradientPicker /> */}
-      <GradientPicker_Index />
-    </View>
+    <Provider store={store}>
+      <View style={{flex: 1}}>
+        <StatusBar
+          backgroundColor={'transparent'}
+          barStyle={'dark-content'}
+          translucent
+        />
+        {/* <Index_Draggable /> */}
+        {/* <Chat /> */}
+        {/* <IMessage /> */}
+        {/* <EnglishStudy /> */}
+        {/* <ZustandTest /> */}
+        {/* <MMKVStorage /> */}
+        {/* <ConcentricTransition /> */}
+        {/* <OnBoarding /> */}
+        {/* <StackNavigation /> */}
+        {/* <Home /> */}
+        {/* <FabButton /> */}
+        {/* <GradientPicker /> */}
+        {/* <GradientPicker_Index /> */}
+        <CounterScreen />
+      </View>
+    </Provider>
   );
 };
 
