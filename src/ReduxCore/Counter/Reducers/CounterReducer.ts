@@ -3,6 +3,7 @@ import {
   INCREASE,
   INCREASE_NUMBER,
   CounterActionType,
+  MULTIPLY,
 } from '../Actions';
 
 const CounterReducer = (state = 0, action: CounterActionType) => {
@@ -12,7 +13,9 @@ const CounterReducer = (state = 0, action: CounterActionType) => {
     case DECREASE:
       return state - 1;
     case INCREASE_NUMBER:
-      return state + action.payload;
+      return state + action.payload!;
+    case MULTIPLY:
+      return state * action.payload!;
     default:
       return state;
   }

@@ -1,8 +1,15 @@
 import {View, Text, Button} from 'react-native';
 import React from 'react';
-import {increase, decrease, increaseNumber} from './Actions';
+import {
+  increase,
+  decrease,
+  increaseNumber,
+  multiply,
+  MULTIPLY_SAGA,
+} from './Actions';
 import {useSelector, useDispatch} from 'react-redux';
 import fetchData from './Middleware';
+
 const CounterScreen = () => {
   const counter = useSelector((state: any) => state.CounterReducer);
   const dispatch = useDispatch();
@@ -22,14 +29,15 @@ const CounterScreen = () => {
         onPress={() => dispatch(increaseNumber(2))}
         title="Increase number"
       />
-      <Button
+      {/* <Button
         title="Fetch data"
         onPress={() => {
-          // const a = await fetchData();
-          // console.log(a.limit);
           dispatch(fetchData());
-          //fetchData();
         }}
+      /> */}
+      <Button
+        onPress={() => dispatch({type: MULTIPLY_SAGA, payload: 3})}
+        title="Multiply"
       />
     </View>
   );

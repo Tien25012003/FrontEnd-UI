@@ -21,6 +21,10 @@ import GradientPicker_Index from './src/GradientPicker/GradientPicker_Index';
 import CounterScreen from './src/ReduxCore/Counter/CounterScreen';
 import {Provider} from 'react-redux';
 import {store} from './src/ReduxCore/Counter/Store/store';
+import LinearBar from './src/Animation/LinearBar';
+import PhotoApp from './src/Animation/PhotoApp/PhotoApp';
+import BallGesture from './src/BallGesture/BallGesture';
+import Gallery from './src/Gallery/Gallery';
 const {width, height} = Dimensions.get('screen');
 const App = () => {
   return (
@@ -44,7 +48,11 @@ const App = () => {
         {/* <FabButton /> */}
         {/* <GradientPicker /> */}
         {/* <GradientPicker_Index /> */}
-        <CounterScreen />
+        {/* <CounterScreen /> */}
+        {/* <LinearBar /> */}
+        {/* <PhotoApp /> */}
+        {/* <BallGesture /> */}
+        <Gallery />
       </View>
     </Provider>
   );
