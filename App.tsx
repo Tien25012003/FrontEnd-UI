@@ -24,7 +24,9 @@ import {store} from './src/ReduxCore/Counter/Store/store';
 import LinearBar from './src/Animation/LinearBar';
 import PhotoApp from './src/Animation/PhotoApp/PhotoApp';
 import BallGesture from './src/BallGesture/BallGesture';
+import SpecialGift from './src/SpecialGift/SpecialGift';
 import Gallery from './src/Gallery/Gallery';
+
 const {width, height} = Dimensions.get('screen');
 const App = () => {
   return (
@@ -52,7 +54,8 @@ const App = () => {
         {/* <LinearBar /> */}
         {/* <PhotoApp /> */}
         {/* <BallGesture /> */}
-        <Gallery />
+        {/* <Gallery /> */}
+        <SpecialGift />
       </View>
     </Provider>
   );
